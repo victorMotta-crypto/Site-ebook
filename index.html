@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suplementos que o Google Não Mostra</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    img {
+      width: 250px;
+      margin: 20px 0;
+    }
+    input {
+      padding: 10px;
+      width: 90%;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <h1>Suplementos que o Google Não Mostra</h1>
+  <p>Adquira agora seu eBook com os melhores suplementos para emagrecer em 2025!</p>
+  <p><strong>Valor: R$19,99</strong></p>
+
+  <img src="qrcode_pix_victor.png" alt="QR Code PIX">
+  <p>Escaneie o QR Code para pagar via PIX</p>
+
+  <form id="ebookForm">
+    <input type="email" id="user_email" name="user_email" placeholder="Digite seu e-mail" required>
+    <button type="submit">Já fiz o PIX - Enviar eBook</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    (function() {
+      emailjs.init("DFDfXhfxYreelpEv3");
+    })();
+
+    document.getElementById('ebookForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.send("service_js0rsqt", "template_mp101to", {
+        user_email: document.getElementById('user_email').value,
+        message: "Olá! Obrigado pela compra. Aqui está seu eBook: https://seulink.com/ebook"
+      })
+      .then(function(response) {
+         document.getElementById('status').innerText = "eBook enviado com sucesso para seu e-mail!";
+      }, function(error) {
+         document.getElementById('status').innerText = "Ocorreu um erro. Tente novamente.";
+      });
+    });
+  </script>
+</body>
+</html>
